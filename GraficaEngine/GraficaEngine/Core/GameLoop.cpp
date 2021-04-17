@@ -51,6 +51,10 @@ namespace Engine
 			for (GameObject* gameObject : _gameObjects)
 			{
 				gameObject->update();
+			}
+
+			for (GameObject* gameObject : _gameObjects)
+			{
 				gameObject->draw();
 			}
 
