@@ -27,6 +27,7 @@ namespace Engine
 		Window* _window;
 		Shader* _shader;
 		std::vector<GameObject*> _gameObjects;
+		void _checkCollisions();
 	public:
 		static GameLoop getInstance()
 		{

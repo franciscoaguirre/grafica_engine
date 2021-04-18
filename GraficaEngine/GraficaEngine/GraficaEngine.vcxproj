@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Physics\Collider.cpp" />
     <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\GameLoop.cpp" />
     <ClCompile Include="Scripts\PlayerController.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Platform\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Physics\Collider.h" />
     <ClInclude Include="Core\Behaviour.h" />
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\GameLoop.h" />

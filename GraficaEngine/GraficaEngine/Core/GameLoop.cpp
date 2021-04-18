@@ -1,4 +1,5 @@
 #include "GameLoop.h"
+#include "../Collider.h"
 
 namespace Engine
 {
@@ -58,6 +59,8 @@ namespace Engine
 				gameObject->draw();
 			}
 
+			_checkCollisions();
+
 			_window->swap();
 		}
 
@@ -90,5 +93,24 @@ namespace Engine
 	void GameLoop::addGameObject(GameObject *gameObject)
 	{
 		_gameObjects.push_back(gameObject);
+	}
+
+	void GameLoop::_checkCollisions()
+	{
+		for (GameObject* gameObject : _gameObjects)
+		{
+			Collider* selfCollider = gameObject->getCollider();
+			if (selfCollider == nullptr)
+				continue;
+
+			for (GameObject* otherObject : _gameObjects)
+			{
+				Collider* otherCollider = otherObject->getCollider();
+				if (otherCollider == nullptr)
+					continue;
+
+				selfCollider->checkCollision(otherCollider);
+			}
+		}
 	}
 }
