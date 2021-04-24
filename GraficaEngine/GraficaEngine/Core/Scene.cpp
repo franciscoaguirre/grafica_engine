@@ -42,7 +42,7 @@ namespace Engine
 	{
 		for (GameObject* gameObject : _gameObjects)
 		{
-			gameObject->update();
+			gameObject->draw();
 		}
 	}
 
@@ -50,7 +50,7 @@ namespace Engine
 	{
 		for (GameObject* gameObject : _gameObjects)
 		{
-			gameObject->draw();
+			gameObject->update();
 		}
 	}
 
