@@ -25,7 +25,7 @@ namespace Engine
     const float SENSITIVITY = 50.f;
     const float ZOOM = 45.0f;
 
-    class Camera: public BaseGameObject
+    class Camera : public BaseGameObject
     {
     public:
         Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch);

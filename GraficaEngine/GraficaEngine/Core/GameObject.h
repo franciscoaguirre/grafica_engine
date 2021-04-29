@@ -10,7 +10,7 @@
 
 namespace Engine
 {
-	class GameObject: public BaseGameObject
+	class GameObject : public BaseGameObject
 	{
 	private:
 		Model* _model;
