@@ -5,7 +5,7 @@
 #include <map>
 
 #include "GameObject.h"
-#include "PerspectiveCamera.h"
+#include "Camera.h"
 #include "Light.h"
 
 namespace Engine
