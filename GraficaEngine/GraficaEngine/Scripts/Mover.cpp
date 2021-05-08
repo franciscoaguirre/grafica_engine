@@ -3,15 +3,11 @@
 #include "../Core/Time.h"
 #include "../Core/GameObject.h"
 
-Mover::Mover()
+Mover::Mover(float speed = 10.f): _speed(speed)
 {}
 
 void Mover::update()
 {
 	Engine::Transform& transform = gameObject->transform;
 	transform.position += transform.getForward() * _speed * Engine::Time::getDeltaTime();
-	if (transform.position.x >= 10.f)
-	{
-		transform.position.x = -10.f;
-	}
 }
