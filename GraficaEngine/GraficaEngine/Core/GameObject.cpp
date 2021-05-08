@@ -32,21 +32,15 @@ namespace Engine
 		camera->apply(*shader);
 
 		_model->draw(*shader);
+
+		BaseGameObject::draw();
 	}
 
 	GameObject::~GameObject()
 	{
-		delete _model;
-
-		_scene->removeGameObject(this);
-		_scene = nullptr;
-
 		BaseGameObject::~BaseGameObject();
-	}
 
-	bool GameObject::isDrawable() const
-	{
-		return true;
+		delete _model;
 	}
 
 	Model* GameObject::getModel() const

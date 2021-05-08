@@ -5,8 +5,8 @@
 class Mover : public Engine::Behaviour
 {
 private:
-	float _speed = 10.f;
+	float _speed;
 public:
-	Mover();
+	Mover(float speed);
 	void update();
 };
