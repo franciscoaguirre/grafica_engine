@@ -27,6 +27,7 @@
 #include "Scripts/OffsetPlayer.h"
 #include "Scripts/FirstPersonCameraController.h"
 #include "Scripts/ThirdPersonCameraController.h"
+#include "Scripts/Mover.h"
 
 constexpr int WINDOW_WIDTH = 800;
 constexpr int WINDOW_HEIGTH = 600;
@@ -111,6 +112,7 @@ int main(int argc, char *argv[])
 	Engine::Model *carModel = new Engine::Model(_strdup("Assets/Models/lowpolycar.obj"));
 	Engine::MaterialObject carMaterial(shader);
 	Engine::GameObject *car = new Engine::GameObject(carModel, carMaterial);
+	car->addBehaviour(new Mover());
 	scene->addGameObject(car);
 	car->transform.position = glm::vec3(-10.0f, 0.f, 0.f);
 

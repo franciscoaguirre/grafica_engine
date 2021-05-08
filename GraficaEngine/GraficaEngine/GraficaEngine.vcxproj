@@ -160,6 +160,7 @@
     <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\GameLoop.cpp" />
     <ClCompile Include="Core\Scene.cpp" />
+    <ClCompile Include="Scripts\Mover.cpp" />
     <ClCompile Include="Scripts\OffsetPlayer.cpp" />
     <ClCompile Include="Scripts\PlayerController.cpp" />
     <ClCompile Include="Scripts\SwapCameras.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\GameLoop.h" />
     <ClInclude Include="Core\Scene.h" />
+    <ClInclude Include="Scripts\Mover.h" />
     <ClInclude Include="Scripts\OffsetPlayer.h" />
     <ClInclude Include="Scripts\PlayerController.h" />
     <ClInclude Include="Scripts\SwapCameras.h" />
