@@ -103,6 +103,13 @@ int main(int argc, char *argv[])
 	scene->addGameObject(floor);
 	floor->transform.scale = glm::vec3(.5f);
 
+	Engine::Model* riverModel = new Engine::Model(_strdup("Assets/Models/river.obj"));
+	Engine::MaterialObject riverMaterial(shader);
+	Engine::GameObject* river = new Engine::GameObject(riverModel, riverMaterial);
+	scene->addGameObject(river);
+	river->transform.scale = glm::vec3(.5f);
+	river->transform.position = glm::vec3(0.f, 0.f, -3.f);
+
 	Engine::Model *logModel = new Engine::Model(_strdup("Assets/Models/log.obj"));
 	Engine::MaterialObject logMaterial(shader);
 	Engine::GameObject *log = new Engine::GameObject(logModel, logMaterial);
