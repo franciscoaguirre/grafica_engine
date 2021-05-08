@@ -78,13 +78,9 @@ namespace Engine
 
 	void Scene::draw()
 	{
-		for (BaseGameObject *baseGameObject : _gameObjects)
+		for (BaseGameObject *gameObject : _gameObjects)
 		{
-			if (baseGameObject->isDrawable())
-			{
-				GameObject *gameObject = dynamic_cast<GameObject *>(baseGameObject);
-				gameObject->draw();
-			}
+			gameObject->draw();
 		}
 	}
 

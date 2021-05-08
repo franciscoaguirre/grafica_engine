@@ -53,10 +53,8 @@ namespace Engine
 		return _scene;
 	}
 
-	bool BaseGameObject::isDrawable() const
-	{
-		return false;
-	}
+	void BaseGameObject::draw() const
+	{}
 
 	void BaseGameObject::addTag(std::string tag)
 	{

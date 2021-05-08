@@ -35,11 +35,7 @@ namespace Engine
 
 		for (BaseGameObject* child : _children)
 		{
-			if (child->isDrawable())
-			{
-				GameObject* drawableChild = dynamic_cast<GameObject*>(child);
-				drawableChild->draw();
-			}
+			child->draw();
 		}
 	}
 
@@ -48,11 +44,6 @@ namespace Engine
 		BaseGameObject::~BaseGameObject();
 
 		delete _model;
-	}
-
-	bool GameObject::isDrawable() const
-	{
-		return true;
 	}
 
 	Model* GameObject::getModel() const

@@ -27,7 +27,7 @@ namespace Engine
 		void addChild(BaseGameObject*);
 		void setScene(Scene*);
 		Scene* getScene() const;
-		virtual bool isDrawable() const;
+		virtual void draw() const;
 		void addTag(std::string tag);
 		bool hasTag(std::string tag) const;
 	};

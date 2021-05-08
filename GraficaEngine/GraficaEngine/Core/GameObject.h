@@ -20,7 +20,6 @@ namespace Engine
 		GameObject(GameObject*);
 		~GameObject();
 		void draw() const;
-		virtual bool isDrawable() const;
 		Model* getModel() const;
 		MaterialObject getMaterial() const;
 	};
