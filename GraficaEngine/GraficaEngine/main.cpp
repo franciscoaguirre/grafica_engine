@@ -113,8 +113,9 @@ int main(int argc, char *argv[])
 	Engine::Model *logModel = new Engine::Model(_strdup("Assets/Models/log.obj"));
 	Engine::MaterialObject logMaterial(shader);
 	Engine::GameObject *log = new Engine::GameObject(logModel, logMaterial);
+	log->addBehaviour(new Mover());
 	scene->addGameObject(log);
-	log->transform.position = glm::vec3(4.0f, 0.f, -5.f);
+	log->transform.position = glm::vec3(6.0f, 0.f, -3.f);
 
 	Engine::Model *carModel = new Engine::Model(_strdup("Assets/Models/lowpolycar.obj"));
 	Engine::MaterialObject carMaterial(shader);
