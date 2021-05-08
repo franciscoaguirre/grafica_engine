@@ -16,9 +16,14 @@ namespace Engine
 	{
 		gameObject->setScene(this);
 		_queuedGameObjects.push_back(gameObject);
+
+		if (gameObject->getCollider() != nullptr)
+		{
+			_colliders.push_back(gameObject->getCollider());
+		}
 	}
 
-	void Scene::deleteGameObject(BaseGameObject* gameObject)
+	void Scene::deleteGameObject(BaseGameObject *gameObject)
 	{
 		_gameObjectsToDelete.push_back(gameObject);
 	}
@@ -102,12 +107,11 @@ namespace Engine
 		_gameObjects.insert(
 			_gameObjects.end(),
 			_queuedGameObjects.begin(),
-			_queuedGameObjects.end()
-		);
+			_queuedGameObjects.end());
 
 		_queuedGameObjects.clear();
 
-		for (BaseGameObject* gameObjectToDelete : _gameObjectsToDelete)
+		for (BaseGameObject *gameObjectToDelete : _gameObjectsToDelete)
 		{
 			if (gameObjectToDelete->hasParent())
 			{
@@ -119,16 +123,41 @@ namespace Engine
 					std::remove(
 						_gameObjects.begin(),
 						_gameObjects.end(),
-						gameObjectToDelete
-					),
-					_gameObjects.end()
-				);
+						gameObjectToDelete),
+					_gameObjects.end());
+
+				if (gameObjectToDelete->getCollider() != nullptr)
+				{
+					std::remove(_colliders.begin(), _colliders.end(), gameObjectToDelete->getCollider());
+				}
 
 				delete gameObjectToDelete;
 			}
 		}
 
 		_gameObjectsToDelete.clear();
+	}
+
+	void Scene::physicsUpdate()
+	{
+		for (Collider *collider : _colliders)
+		{
+			collider->resetCollisions();
+		}
+
+		for (Collider *first : _colliders)
+		{
+			for (Collider *second : _colliders)
+			{
+				if (!Collider::intersect(first, second))
+				{
+					continue;
+				}
+
+				first->collide(second);
+				second->collide(first);
+			}
+		}
 	}
 
 	Scene::~Scene()
