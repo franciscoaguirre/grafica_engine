@@ -1,6 +1,6 @@
 # Blender v2.91.2 OBJ File: 'newDuck.blend'
 # www.blender.org
-mtllib floor.mtl
+mtllib river.mtl
 o Plane
 v -24.000000 -0.191042 3.000000
 v 24.000000 -0.191042 3.000000
