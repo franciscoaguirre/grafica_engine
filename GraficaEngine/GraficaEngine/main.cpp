@@ -28,7 +28,7 @@
 #include "Scripts/FirstPersonCameraController.h"
 #include "Scripts/ThirdPersonCameraController.h"
 #include "Scripts/Mover.h"
-#include "Scripts/Spawner.h"
+#include "Scripts/EndlessSpawner.h"
 
 constexpr int WINDOW_WIDTH = 800;
 constexpr int WINDOW_HEIGTH = 600;
@@ -114,24 +114,23 @@ int main(int argc, char *argv[])
 	Engine::MaterialObject riverMaterial(shader);
 	Engine::GameObject* river = new Engine::GameObject(riverModel, riverMaterial);
 
-	Engine::Model *logModel = new Engine::Model(_strdup("Assets/Models/log.obj"));
+	Engine::Model* logModel = new Engine::Model(_strdup("Assets/Models/log.obj"));
 	Engine::MaterialObject logMaterial(shader);
-	Engine::GameObject *log = new Engine::GameObject(logModel, logMaterial);
+	Engine::GameObject* log = new Engine::GameObject(logModel, logMaterial);
 
-	Engine::Model *carModel = new Engine::Model(_strdup("Assets/Models/lowpolycar.obj"));
+	Engine::Model* carModel = new Engine::Model(_strdup("Assets/Models/lowpolycar.obj"));
 	Engine::MaterialObject carMaterial(shader);
-	Engine::GameObject *car = new Engine::GameObject(carModel, carMaterial);
+	Engine::GameObject* car = new Engine::GameObject(carModel, carMaterial);
 
 	Engine::BaseGameObject* spawner = new Engine::BaseGameObject();
-	std::vector<Engine::GameObject*> hazards{
-		car,
-		log,
-	};
-	std::vector<Engine::GameObject*> environments{
-		floor,
-		river,
-	};
-	spawner->addBehaviour(new Spawner(hazards, environments));
+	std::map<std::string, EnvironmentWithObstacles> environments;
+	environments["grass"] = EnvironmentWithObstacles(
+		floor, Obstacles { car }
+	);
+	environments["river"] = EnvironmentWithObstacles(
+		river, Obstacles { log }
+	);
+	spawner->addBehaviour(new EndlessSpawner(environments));
 	scene->addGameObject(spawner);
 
 	Engine::Model *treeModel = new Engine::Model(_strdup("Assets/Models/tree.obj"));

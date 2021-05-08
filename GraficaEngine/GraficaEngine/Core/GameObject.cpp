@@ -33,10 +33,7 @@ namespace Engine
 
 		_model->draw(*shader);
 
-		for (BaseGameObject* child : _children)
-		{
-			child->draw();
-		}
+		BaseGameObject::draw();
 	}
 
 	GameObject::~GameObject()

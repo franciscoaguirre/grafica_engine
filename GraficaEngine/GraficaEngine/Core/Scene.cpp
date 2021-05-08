@@ -108,16 +108,23 @@ namespace Engine
 
 		for (BaseGameObject* gameObjectToDelete : _gameObjectsToDelete)
 		{
-			_gameObjects.erase(
-				std::remove(
-					_gameObjects.begin(),
-					_gameObjects.end(),
-					gameObjectToDelete
-				),
-				_gameObjects.end()
-			);
+			if (gameObjectToDelete->hasParent())
+			{
+				gameObjectToDelete->getParent()->deleteChild(gameObjectToDelete);
+			}
+			else
+			{
+				_gameObjects.erase(
+					std::remove(
+						_gameObjects.begin(),
+						_gameObjects.end(),
+						gameObjectToDelete
+					),
+					_gameObjects.end()
+				);
 
-			delete gameObjectToDelete;
+				delete gameObjectToDelete;
+			}
 		}
 
 		_gameObjectsToDelete.clear();

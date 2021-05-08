@@ -1,8 +1,10 @@
 #include "BaseGameObject.h"
 
+#include <algorithm>
+
 namespace Engine
 {
-	BaseGameObject::BaseGameObject() : _scene(nullptr)
+	BaseGameObject::BaseGameObject() : _scene(nullptr), _parent(nullptr)
 	{}
 
 	BaseGameObject::~BaseGameObject()
@@ -27,7 +29,37 @@ namespace Engine
 	void BaseGameObject::addChild(BaseGameObject* child)
 	{
 		child->setScene(_scene);
+		child->setParent(this);
 		_children.push_back(child);
+	}
+
+	BaseGameObject* BaseGameObject::getParent() const
+	{
+		return _parent;
+	}
+
+	void BaseGameObject::setParent(BaseGameObject* parent)
+	{
+		_parent = parent;
+	}
+
+	bool BaseGameObject::hasParent() const
+	{
+		return _parent != nullptr;
+	}
+
+	void BaseGameObject::deleteChild(BaseGameObject* child)
+	{
+		_children.erase(
+			std::remove(
+				_children.begin(),
+				_children.end(),
+				child
+			),
+			_children.end()
+		);
+
+		delete child;
 	}
 
 	void BaseGameObject::update()
@@ -54,7 +86,12 @@ namespace Engine
 	}
 
 	void BaseGameObject::draw() const
-	{}
+	{
+		for (BaseGameObject* child : _children)
+		{
+			child->draw();
+		}
+	}
 
 	void BaseGameObject::addTag(std::string tag)
 	{

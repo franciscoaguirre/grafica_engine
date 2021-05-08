@@ -1,20 +1,27 @@
 #pragma once
 
+#include <string>
+#include <map>
 #include <vector>
 
 #include "../Core/Behaviour.h"
 #include "../Core/GameObject.h"
+#include "../Renderer/Shader.h"
 #include "../Utils/CircularBuffer.h"
 
 constexpr float FIRST_ROW = -18.f;
 constexpr float SPACE_BETWEEN_ROWS = 3.f;
 constexpr float RADIUS_TO_PLAYER = 15.f;
 
-class Spawner : public Engine::Behaviour
+using Environment = Engine::GameObject*;
+using Obstacles = std::vector<Engine::GameObject*>;
+using EnvironmentWithObstacles = std::pair<Environment, Obstacles>;
+
+class EndlessSpawner : public Engine::Behaviour
 {
 private:
-	std::vector<Engine::GameObject*> _hazards;
-	std::vector<Engine::GameObject*> _environments;
+	std::map<std::string, EnvironmentWithObstacles> _environments;
+	std::vector<std::string> _environmentNames;
 	CircularBuffer<Engine::GameObject*> *_rows;
 	int _currentRow;
 	Engine::Scene* _scene = nullptr;
@@ -22,7 +29,7 @@ private:
 	float _getZCoordinateRow() const;
 	bool _nearPlayer() const;
 public:
-	Spawner(std::vector<Engine::GameObject*> hazards, std::vector<Engine::GameObject*> environments);
-	~Spawner();
+	EndlessSpawner(std::map<std::string, EnvironmentWithObstacles> environments);
+	~EndlessSpawner();
 	void update();
 };

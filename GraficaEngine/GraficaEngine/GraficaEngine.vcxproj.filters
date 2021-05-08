@@ -96,7 +96,13 @@
     <ClCompile Include="Scripts\Mover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Spawner.cpp">
+    <ClCompile Include="Scripts\EndlessSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Boundary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\ObstacleSpawner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -188,10 +194,16 @@
     <ClInclude Include="Scripts\Mover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Spawner.h">
+    <ClInclude Include="Scripts\EndlessSpawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utils\CircularBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Boundary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\ObstacleSpawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
