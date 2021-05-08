@@ -96,17 +96,23 @@ int main(int argc, char *argv[])
 	duck->transform.position += glm::vec3(1.0f, 0.f, 0.f);
 	duck->transform.scale = glm::vec3(.5f);
 
+	Engine::Model* floorModel = new Engine::Model(_strdup("Assets/Models/floor.obj"));
+	Engine::MaterialObject floorMaterial(shader);
+	Engine::GameObject* floor = new Engine::GameObject(floorModel, floorMaterial);
+	scene->addGameObject(floor);
+	floor->transform.scale = glm::vec3(.5f);
+
 	Engine::Model *logModel = new Engine::Model(_strdup("Assets/Models/log.obj"));
 	Engine::MaterialObject logMaterial(shader);
 	Engine::GameObject *log = new Engine::GameObject(logModel, logMaterial);
 	scene->addGameObject(log);
-	log->transform.position += glm::vec3(4.0f, 0.f, -5.f);
+	log->transform.position = glm::vec3(4.0f, 0.f, -5.f);
 
 	Engine::Model *carModel = new Engine::Model(_strdup("Assets/Models/lowpolycar.obj"));
 	Engine::MaterialObject carMaterial(shader);
 	Engine::GameObject *car = new Engine::GameObject(carModel, carMaterial);
 	scene->addGameObject(car);
-	car->transform.position += glm::vec3(-3.0f, 0.f, 3.f);
+	car->transform.position = glm::vec3(-10.0f, 0.f, 0.f);
 
 	Engine::Model *treeModel = new Engine::Model(_strdup("Assets/Models/tree.obj"));
 	Engine::MaterialObject treeMaterial(shader);

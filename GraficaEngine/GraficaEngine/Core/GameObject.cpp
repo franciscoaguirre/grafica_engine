@@ -5,6 +5,13 @@ namespace Engine
 	GameObject::GameObject(Model* model, MaterialObject material) : _model(model), _material(material)
 	{}
 
+	GameObject::GameObject(GameObject* otherGameObject)
+	{
+		Model* modelCopy = new Model(otherGameObject->getModel());
+		_model = modelCopy;
+		_material = MaterialObject(otherGameObject->getMaterial().getShader());
+	}
+
 	void GameObject::draw() const
 	{
 		if (_model == nullptr)
@@ -40,5 +47,15 @@ namespace Engine
 	bool GameObject::isDrawable() const
 	{
 		return true;
+	}
+
+	Model* GameObject::getModel() const
+	{
+		return _model;
+	}
+	
+	MaterialObject GameObject::getMaterial() const
+	{
+		return _material;
 	}
 }
