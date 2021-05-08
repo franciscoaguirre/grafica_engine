@@ -7,6 +7,11 @@ namespace Engine
 
 	BaseGameObject::~BaseGameObject()
 	{
+		for (BaseGameObject* child : _children)
+		{
+			delete child;
+		}
+
 		for (Behaviour* behaviour : _behaviours)
 		{
 			delete behaviour;
@@ -19,11 +24,22 @@ namespace Engine
 		_behaviours.push_back(behaviour);
 	}
 
+	void BaseGameObject::addChild(BaseGameObject* child)
+	{
+		child->setScene(_scene);
+		_children.push_back(child);
+	}
+
 	void BaseGameObject::update()
 	{
 		for (Behaviour* behaviour : _behaviours)
 		{
 			behaviour->update();
+		}
+
+		for (BaseGameObject* child : _children)
+		{
+			child->update();
 		}
 	}
 

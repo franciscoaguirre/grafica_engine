@@ -163,6 +163,7 @@
     <ClCompile Include="Scripts\Mover.cpp" />
     <ClCompile Include="Scripts\OffsetPlayer.cpp" />
     <ClCompile Include="Scripts\PlayerController.cpp" />
+    <ClCompile Include="Scripts\Spawner.cpp" />
     <ClCompile Include="Scripts\SwapCameras.cpp" />
     <ClCompile Include="Scripts\ThirdPersonCameraController.cpp" />
     <ClCompile Include="Utils\DebugLog.cpp" />
@@ -193,8 +194,10 @@
     <ClInclude Include="Scripts\Mover.h" />
     <ClInclude Include="Scripts\OffsetPlayer.h" />
     <ClInclude Include="Scripts\PlayerController.h" />
+    <ClInclude Include="Scripts\Spawner.h" />
     <ClInclude Include="Scripts\SwapCameras.h" />
     <ClInclude Include="Scripts\ThirdPersonCameraController.h" />
+    <ClInclude Include="Utils\CircularBuffer.h" />
     <ClInclude Include="Utils\DebugLog.h" />
     <ClInclude Include="Renderer\Drawable.h" />
     <ClInclude Include="Core\GameObject.h" />

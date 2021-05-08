@@ -32,16 +32,22 @@ namespace Engine
 		camera->apply(*shader);
 
 		_model->draw(*shader);
+
+		for (BaseGameObject* child : _children)
+		{
+			if (child->isDrawable())
+			{
+				GameObject* drawableChild = dynamic_cast<GameObject*>(child);
+				drawableChild->draw();
+			}
+		}
 	}
 
 	GameObject::~GameObject()
 	{
-		delete _model;
-
-		_scene->removeGameObject(this);
-		_scene = nullptr;
-
 		BaseGameObject::~BaseGameObject();
+
+		delete _model;
 	}
 
 	bool GameObject::isDrawable() const

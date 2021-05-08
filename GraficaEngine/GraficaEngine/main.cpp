@@ -28,6 +28,7 @@
 #include "Scripts/FirstPersonCameraController.h"
 #include "Scripts/ThirdPersonCameraController.h"
 #include "Scripts/Mover.h"
+#include "Scripts/Spawner.h"
 
 constexpr int WINDOW_WIDTH = 800;
 constexpr int WINDOW_HEIGTH = 600;
@@ -100,29 +101,38 @@ int main(int argc, char *argv[])
 	Engine::Model* floorModel = new Engine::Model(_strdup("Assets/Models/floor.obj"));
 	Engine::MaterialObject floorMaterial(shader);
 	Engine::GameObject* floor = new Engine::GameObject(floorModel, floorMaterial);
-	scene->addGameObject(floor);
-	floor->transform.scale = glm::vec3(.5f);
+
+	for (int index = -5; index < 5; index++)
+	{
+		Engine::GameObject* newFloor = new Engine::GameObject(floor);
+		newFloor->transform.scale = glm::vec3(.5f);
+		newFloor->transform.position = glm::vec3(0.f, 0.f, index * SPACE_BETWEEN_ROWS);
+		scene->addGameObject(newFloor);
+	}
 
 	Engine::Model* riverModel = new Engine::Model(_strdup("Assets/Models/river.obj"));
 	Engine::MaterialObject riverMaterial(shader);
 	Engine::GameObject* river = new Engine::GameObject(riverModel, riverMaterial);
-	scene->addGameObject(river);
-	river->transform.scale = glm::vec3(.5f);
-	river->transform.position = glm::vec3(0.f, 0.f, -3.f);
 
 	Engine::Model *logModel = new Engine::Model(_strdup("Assets/Models/log.obj"));
 	Engine::MaterialObject logMaterial(shader);
 	Engine::GameObject *log = new Engine::GameObject(logModel, logMaterial);
-	log->addBehaviour(new Mover());
-	scene->addGameObject(log);
-	log->transform.position = glm::vec3(6.0f, 0.f, -3.f);
 
 	Engine::Model *carModel = new Engine::Model(_strdup("Assets/Models/lowpolycar.obj"));
 	Engine::MaterialObject carMaterial(shader);
 	Engine::GameObject *car = new Engine::GameObject(carModel, carMaterial);
-	car->addBehaviour(new Mover());
-	scene->addGameObject(car);
-	car->transform.position = glm::vec3(-10.0f, 0.f, 0.f);
+
+	Engine::BaseGameObject* spawner = new Engine::BaseGameObject();
+	std::vector<Engine::GameObject*> hazards{
+		car,
+		log,
+	};
+	std::vector<Engine::GameObject*> environments{
+		floor,
+		river,
+	};
+	spawner->addBehaviour(new Spawner(hazards, environments));
+	scene->addGameObject(spawner);
 
 	Engine::Model *treeModel = new Engine::Model(_strdup("Assets/Models/tree.obj"));
 	Engine::MaterialObject treeMaterial(shader);
