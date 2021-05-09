@@ -53,7 +53,12 @@ namespace Engine
 
 		BaseGameObject::~BaseGameObject();
 
-		delete _collider;
+		if (_collider != nullptr)
+		{
+			_scene->removeCollider(_collider);
+			delete _collider;
+		}
+		
 		delete _model;
 	}
 

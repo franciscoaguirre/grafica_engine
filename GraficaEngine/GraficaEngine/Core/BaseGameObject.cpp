@@ -1,5 +1,7 @@
 #include "BaseGameObject.h"
 
+#include "Scene.h"
+
 #include <algorithm>
 
 namespace Engine
@@ -30,6 +32,10 @@ namespace Engine
 	void BaseGameObject::addChild(BaseGameObject *child)
 	{
 		child->setScene(_scene);
+		if (child->getCollider() != nullptr)
+		{
+			_scene->addCollider(child->getCollider());
+		}
 		child->setParent(this);
 		_children.push_back(child);
 	}

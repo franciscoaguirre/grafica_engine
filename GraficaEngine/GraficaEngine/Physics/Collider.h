@@ -22,5 +22,6 @@ namespace Engine
         void setGameObject(GameObject *gameObject);
         GameObject *getGameObject() const;
         static bool intersect(Collider *, Collider *);
+        ~Collider();
     };
 }

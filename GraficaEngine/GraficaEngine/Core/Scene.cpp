@@ -102,6 +102,26 @@ namespace Engine
 		flushQueuedGameObjects();
 	}
 
+	void Scene::addCollider(Collider *collider)
+	{
+		_colliders.push_back(collider);
+	}
+
+	void Scene::removeCollider(Collider *collider)
+	{
+		if (collider == nullptr)
+		{
+			return;
+		}
+
+		_colliders.erase(
+			std::remove(
+				_colliders.begin(),
+				_colliders.end(),
+				collider),
+			_colliders.end());
+	}
+
 	void Scene::flushQueuedGameObjects()
 	{
 		_gameObjects.insert(
@@ -125,11 +145,6 @@ namespace Engine
 						_gameObjects.end(),
 						gameObjectToDelete),
 					_gameObjects.end());
-
-				if (gameObjectToDelete->getCollider() != nullptr)
-				{
-					std::remove(_colliders.begin(), _colliders.end(), gameObjectToDelete->getCollider());
-				}
 
 				delete gameObjectToDelete;
 			}

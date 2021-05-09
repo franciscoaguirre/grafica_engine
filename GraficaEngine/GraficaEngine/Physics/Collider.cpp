@@ -49,4 +49,8 @@ namespace Engine
             (minA.y <= maxB.y && maxA.y >= minB.y) &&
             (minA.z <= maxB.z && maxA.z >= minB.z));
     }
+
+    Collider::~Collider()
+    {
+    }
 }

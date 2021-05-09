@@ -7,7 +7,7 @@
 #include "Mover.h"
 #include "Boundary.h"
 
-ObstacleSpawner::ObstacleSpawner(std::vector<Engine::GameObject*> obstacles): _obstacles(obstacles)
+ObstacleSpawner::ObstacleSpawner(std::vector<Engine::GameObject *> obstacles) : _obstacles(obstacles)
 {
 	srand(time(nullptr));
 	_timeToNextSpawn = Engine::Time::getTime() + rand() % 5;
@@ -28,8 +28,10 @@ void ObstacleSpawner::update()
 
 		int randomIndex = rand() % _obstacles.size();
 
-		Engine::GameObject* randomObstacle = _obstacles[randomIndex];
-		Engine::GameObject* obstacleToSpawn = new Engine::GameObject(randomObstacle);
+		Engine::GameObject *randomObstacle = _obstacles[randomIndex];
+		Engine::GameObject *obstacleToSpawn = new Engine::GameObject(randomObstacle);
+		Engine::Collider *collider = new Engine::Collider(glm::vec3(-1.f), glm::vec3(1.f));
+		obstacleToSpawn->setCollider(collider);
 		obstacleToSpawn->addBehaviour(new Mover(_speed));
 		obstacleToSpawn->addBehaviour(new Boundary(-30.f, 10.f));
 		obstacleToSpawn->transform.position = gameObject->transform.position;
