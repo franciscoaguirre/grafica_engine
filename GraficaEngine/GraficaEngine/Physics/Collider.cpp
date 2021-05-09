@@ -17,8 +17,6 @@ namespace Engine
 
     void Collider::collide(Collider *other)
     {
-        Engine::DebugLog::debug("HOLA");
-
         _collidingWith.push_back(other);
     }
 
@@ -30,6 +28,11 @@ namespace Engine
     GameObject *Collider::getGameObject() const
     {
         return _gameObject;
+    }
+
+    std::vector<Collider *> Collider::getCollisions() const
+    {
+        return _collidingWith;
     }
 
     bool Collider::intersect(Collider *a, Collider *b)

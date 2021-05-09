@@ -164,6 +164,7 @@
     <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\GameLoop.cpp" />
     <ClCompile Include="Core\Scene.cpp" />
+    <ClCompile Include="Scripts\Hazard.cpp" />
     <ClCompile Include="Scripts\Mover.cpp" />
     <ClCompile Include="Scripts\ObstacleSpawner.cpp" />
     <ClCompile Include="Scripts\OffsetPlayer.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\GameLoop.h" />
     <ClInclude Include="Core\Scene.h" />
+    <ClInclude Include="Scripts\Hazard.h" />
     <ClInclude Include="Scripts\Mover.h" />
     <ClInclude Include="Scripts\ObstacleSpawner.h" />
     <ClInclude Include="Scripts\OffsetPlayer.h" />

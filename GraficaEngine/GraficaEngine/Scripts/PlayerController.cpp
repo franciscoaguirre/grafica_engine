@@ -4,6 +4,8 @@
 #include "../Core/Time.h"
 #include "../Core/GameObject.h"
 
+#include "../Utils/DebugLog.h"
+
 PlayerController::PlayerController()
 {
 }
@@ -37,4 +39,9 @@ void PlayerController::update()
 	{
 		transform.position += movementDirection * _speed * Engine::Time::getDeltaTime();
 	}
+}
+
+void PlayerController::die()
+{
+	gameObject->getScene()->deleteGameObject(gameObject);
 }

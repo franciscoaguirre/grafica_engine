@@ -6,6 +6,7 @@
 #include "../Core/Time.h"
 #include "Mover.h"
 #include "Boundary.h"
+#include "Hazard.h"
 
 ObstacleSpawner::ObstacleSpawner(std::vector<Engine::GameObject *> obstacles) : _obstacles(obstacles)
 {
@@ -34,6 +35,8 @@ void ObstacleSpawner::update()
 		obstacleToSpawn->setCollider(collider);
 		obstacleToSpawn->addBehaviour(new Mover(_speed));
 		obstacleToSpawn->addBehaviour(new Boundary(-30.f, 10.f));
+		obstacleToSpawn->addBehaviour(new Hazard());
+		obstacleToSpawn->addTag("hazard");
 		obstacleToSpawn->transform.position = gameObject->transform.position;
 		obstacleToSpawn->transform.position.x = -20.f;
 		gameObject->addChild(obstacleToSpawn);

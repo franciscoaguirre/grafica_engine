@@ -38,5 +38,19 @@ namespace Engine
 		virtual void draw() const;
 		void addTag(std::string tag);
 		bool hasTag(std::string tag) const;
+
+		template<class BehaviourType> BehaviourType* getComponent() const
+		{
+			for (Behaviour* behaviour : _behaviours)
+			{
+				BehaviourType* component = dynamic_cast<BehaviourType*>(behaviour);
+				if (component != nullptr)
+				{
+					return component;
+				}
+			}
+
+			return nullptr;
+		}
 	};
 }

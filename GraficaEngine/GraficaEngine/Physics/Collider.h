@@ -20,6 +20,7 @@ namespace Engine
         void resetCollisions();
         void collide(Collider *other);
         void setGameObject(GameObject *gameObject);
+        std::vector<Collider* > getCollisions() const;
         GameObject *getGameObject() const;
         static bool intersect(Collider *, Collider *);
         ~Collider();

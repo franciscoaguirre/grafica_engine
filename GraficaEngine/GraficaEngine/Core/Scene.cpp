@@ -19,13 +19,13 @@ namespace Engine
 
 		if (gameObject->getCollider() != nullptr)
 		{
-			_colliders.push_back(gameObject->getCollider());
+			addCollider(gameObject->getCollider());
 		}
 	}
 
 	void Scene::deleteGameObject(BaseGameObject *gameObject)
 	{
-		_gameObjectsToDelete.push_back(gameObject);
+		_gameObjectsToDelete.insert(gameObject);
 	}
 
 	BaseGameObject *Scene::getGameObjectWithTag(std::string tag)

@@ -16,6 +16,11 @@ void ThirdPersonCameraController::update()
 {
     Engine::Transform &transform = gameObject->transform;
     Engine::BaseGameObject *player = gameObject->getScene()->getGameObjectWithTag("player");
+
+    if (player == nullptr) {
+        return;
+    }
+
     Engine::Transform &playerTransform = player->transform;
     Engine::Input &input = Engine::Input::getInstance();
 

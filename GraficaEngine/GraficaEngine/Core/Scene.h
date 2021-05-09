@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include <map>
 
 #include "GameObject.h"
@@ -21,7 +22,7 @@ namespace Engine
 		std::vector<std::string> _cameraNames;
 		std::vector<BaseGameObject *> _gameObjects;
 		std::vector<BaseGameObject *> _queuedGameObjects;
-		std::vector<BaseGameObject *> _gameObjectsToDelete;
+		std::set<BaseGameObject *> _gameObjectsToDelete;
 		std::vector<Collider *> _colliders;
 		std::vector<Light *> _lights;
 
