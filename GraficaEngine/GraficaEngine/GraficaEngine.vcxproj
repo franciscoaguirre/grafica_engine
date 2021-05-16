@@ -178,6 +178,7 @@
     <ClCompile Include="Scripts\PlayerController.cpp" />
     <ClCompile Include="Scripts\EndlessSpawner.cpp" />
     <ClCompile Include="Scripts\StaticSpawner.cpp" />
+    <ClCompile Include="Scripts\Riser.cpp" />
     <ClCompile Include="Scripts\SwapCameras.cpp" />
     <ClCompile Include="Scripts\ThirdPersonCameraController.cpp" />
     <ClCompile Include="Scripts\TimeController.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="Scripts\PlayerController.h" />
     <ClInclude Include="Scripts\EndlessSpawner.h" />
     <ClInclude Include="Scripts\StaticSpawner.h" />
+    <ClInclude Include="Scripts\Riser.h" />
     <ClInclude Include="Scripts\SwapCameras.h" />
     <ClInclude Include="Scripts\ThirdPersonCameraController.h" />
     <ClInclude Include="Scripts\TimeController.h" />
