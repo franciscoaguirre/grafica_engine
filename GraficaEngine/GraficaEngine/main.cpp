@@ -89,8 +89,8 @@ Engine::Scene* loadMainScene(Engine::Shader *shader)
 		glm::vec3(1.f, 4.f, 3.f),
 		glm::vec3(0.f, 1.f, 0.f),
 		Engine::YAW,
-		-30.f);
-	centeredFixedCamera->addBehaviour(new OffsetPlayer(glm::vec3(0.f, 4.5f, 5.f)));
+		-20.f);
+	centeredFixedCamera->addBehaviour(new OffsetPlayer(glm::vec3(0.f, 0.f, 8.5f)));
 
 	Engine::PerspectiveCamera* firstPersonCamera = new Engine::PerspectiveCamera(
 		glm::vec3(1.f, 2.f, -0.5f));
@@ -190,9 +190,6 @@ Engine::Scene* loadMainScene(Engine::Shader *shader)
 	scene->addGameObject(tree);
 	tree->transform.position += glm::vec3(4.0f, 0.f, 5.f);
 
-	Engine::Light* light = new Engine::Light(glm::vec3(.4f), glm::vec3(1.f), glm::vec3(1.5f), glm::vec3(1.f, -1.f, -1.f));
-	scene->addLight(light);
-
 	Engine::GameObject* coin = new Engine::GameObject(
 		new Engine::Model(_strdup("Assets/Models/coin.obj")),
 		Engine::MaterialObject(shader));
@@ -209,7 +206,7 @@ Engine::Scene* loadMainScene(Engine::Shader *shader)
 	hint->setColor(Engine::GRAY);
 	hint->transform.position = glm::vec3(800.f, 0.f, 1.f);
 
-	Engine::TextObject *hintText = new Engine::TextObject("Cambi� de c�mara con V");
+	Engine::TextObject *hintText = new Engine::TextObject("Cambia de camara con V");
 	hintText->transform.position = glm::vec3(15.f, 15.f, 2.f);
 	hintText->setColor(Engine::BLACK);
 	hint->addChild(hintText);

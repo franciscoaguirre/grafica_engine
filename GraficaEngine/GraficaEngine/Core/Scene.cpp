@@ -28,15 +28,12 @@ namespace Engine
 			addGameObject(gameObjectCopy);
 		}
 
-		for (Light *light : otherScene->_lights)
+		for (std::string cameraName : otherScene->_cameraNames)
 		{
-			Light *lightCopy = new Light(light);
-			addLight(light);
-		}
-
-		for (std::pair<std::string, Camera*> entry : otherScene->_cameras)
-		{
-			addCamera(entry.first, entry.second->clone());
+			addCamera(
+				cameraName,
+				otherScene->_cameras[cameraName]->clone()
+			);
 		}
 
 		setActiveCamera("default"); // TODO: Make generic
@@ -74,16 +71,6 @@ namespace Engine
 
 		}
 		return nullptr;
-	}
-
-	void Scene::addLight(Light *light)
-	{
-		_lights.push_back(light);
-	}
-
-	void Scene::removeLight(Light *light)
-	{
-		std::remove(_lights.begin(), _lights.end(), light);
 	}
 
 	std::vector<Light *> Scene::getLights()
@@ -243,11 +230,6 @@ namespace Engine
 		for (BaseGameObject *gameObject : _gameObjects)
 		{
 			delete gameObject;
-		}
-
-		for (Light *light : _lights)
-		{
-			delete light;
 		}
 	}
 }
