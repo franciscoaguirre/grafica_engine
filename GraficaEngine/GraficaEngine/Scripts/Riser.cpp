@@ -1,10 +1,13 @@
 #include "Riser.h"
 
+#include <vector>
+
 #include "../Core/Time.h"
 #include "../Core/GameObject.h"
 #include "../Core/Transform.h"
 
 #include "ObstacleSpawner.h"
+#include "StaticSpawner.h"
 
 Riser::Riser(float stopHeight, float speed) :
 	_stopHeight(stopHeight),
@@ -38,6 +41,11 @@ void Riser::update()
 		if (obstacleSpawner != nullptr)
 		{
 			obstacleSpawner->startSpawning();
+		}
+		std::vector<StaticSpawner *> staticSpawners = gameObject->getComponents<StaticSpawner>();
+		for (StaticSpawner *staticSpawner : staticSpawners)
+		{
+			staticSpawner->startSpawning();
 		}
 	}
 }

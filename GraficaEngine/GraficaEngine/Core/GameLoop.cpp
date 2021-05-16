@@ -125,10 +125,9 @@ namespace Engine
 		{
 			Time::updateTime();
 			input.update();
-
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-			glPolygonMode(GL_FRONT_AND_BACK, Settings::getInstance().getIsWireframe() ? GL_LINE : GL_FILL);
+			
+			if (input.getKeyDown(KEY_Q))
+				break;
 
 			if (input.getKeyDown(PAUSE_KEY))
 			{
@@ -139,6 +138,10 @@ namespace Engine
 			{
 				continue;
 			}
+
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			glPolygonMode(GL_FRONT_AND_BACK, Settings::getInstance().getIsWireframe() ? GL_LINE : GL_FILL);
 
 			_handleGameSpeed();
 			_handleTexturesToggle();
@@ -155,9 +158,6 @@ namespace Engine
 			}
 
 			Camera *camera = activeScene->getActiveCamera();
-
-			if (input.getKeyDown(KEY_Q))
-				break;
 
 			_shader->use();
 			glm::mat4 projection = camera->getProjectionMatrix();

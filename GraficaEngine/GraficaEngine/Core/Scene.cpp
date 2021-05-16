@@ -14,7 +14,7 @@ namespace Engine
 		_activeCamera = defaultCamera;
 	}
 
-	Scene::Scene(Scene *otherScene)
+	Scene::Scene(const Scene *otherScene)
 	{
 		for (BaseGameObject *gameObject : otherScene->_gameObjects)
 		{
@@ -30,10 +30,8 @@ namespace Engine
 
 		for (std::string cameraName : otherScene->_cameraNames)
 		{
-			addCamera(
-				cameraName,
-				otherScene->_cameras[cameraName]->clone()
-			);
+			Camera* cameraClone = otherScene->_cameras.at(cameraName)->clone();
+			addCamera(cameraName, cameraClone);
 		}
 
 		setActiveCamera("default"); // TODO: Make generic
