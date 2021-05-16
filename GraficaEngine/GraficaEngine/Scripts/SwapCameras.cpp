@@ -4,6 +4,15 @@
 
 #include "SwapCameras.h"
 
+SwapCameras::SwapCameras() : _currentIndex(0)
+{
+}
+
+SwapCameras *SwapCameras::clone() const
+{
+	return new SwapCameras();
+}
+
 void SwapCameras::update()
 {
 	Engine::Input& input = Engine::Input::getInstance();

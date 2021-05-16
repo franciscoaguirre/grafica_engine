@@ -9,6 +9,6 @@ private:
 	Engine::GameObject* _objectToSpawn;
 public:
 	StaticSpawner(Engine::GameObject *objectToSpawn);
-	StaticSpawner* clone() const;
+	StaticSpawner* clone() const override;
 	void start();
 };

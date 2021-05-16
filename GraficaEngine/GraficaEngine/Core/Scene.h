@@ -28,6 +28,7 @@ namespace Engine
 
 	public:
 		Scene(Camera *);
+		Scene(Scene *);
 		void addLight(Light *);
 		void removeLight(Light *);
 		void addGameObject(BaseGameObject *);

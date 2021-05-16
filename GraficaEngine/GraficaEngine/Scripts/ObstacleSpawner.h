@@ -16,8 +16,8 @@ private:
 	bool _canSpawn;
 public:
 	ObstacleSpawner(std::vector<Engine::GameObject*> obstacles);
-	ObstacleSpawner(ObstacleSpawner *);
-	ObstacleSpawner *clone() const;
+	ObstacleSpawner(const ObstacleSpawner *);
+	ObstacleSpawner *clone() const override;
 	void update();
 	void startSpawning();
 };

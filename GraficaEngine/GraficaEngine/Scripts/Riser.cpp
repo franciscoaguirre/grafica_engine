@@ -13,6 +13,11 @@ Riser::Riser(float stopHeight, float speed) :
 {
 }
 
+Riser *Riser::clone() const
+{
+	return new Riser(_stopHeight, _speed);
+}
+
 void Riser::update()
 {
 	Engine::Transform &transform = gameObject->transform;

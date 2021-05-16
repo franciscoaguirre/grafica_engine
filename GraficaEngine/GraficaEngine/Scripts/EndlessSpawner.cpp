@@ -17,6 +17,21 @@ EndlessSpawner::~EndlessSpawner()
 	delete _rows;
 }
 
+EndlessSpawner::EndlessSpawner(const EndlessSpawner *otherEndlessSpawner) :
+	_rows(new CircularBuffer<Engine::GameObject*>(10)),
+	_currentRow(0)
+{
+	for (Environment environment : otherEndlessSpawner->_environments)
+	{
+		_environments.push_back(environment->clone());
+	}
+}
+
+EndlessSpawner* EndlessSpawner::clone() const
+{
+	return new EndlessSpawner(this);
+}
+
 float EndlessSpawner::_getZCoordinateRow() const
 {
 	return FIRST_ROW - (_currentRow * SPACE_BETWEEN_ROWS);

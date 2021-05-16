@@ -17,7 +17,7 @@ ObstacleSpawner::ObstacleSpawner(std::vector<Engine::GameObject *> obstacles) :
 	_sign = ((bool)(rand() % 1)) ? -1.f : 1.f;
 }
 
-ObstacleSpawner::ObstacleSpawner(ObstacleSpawner *otherObstacleSpawner) :
+ObstacleSpawner::ObstacleSpawner(const ObstacleSpawner *otherObstacleSpawner) :
 	_obstacles(otherObstacleSpawner->_obstacles),
 	_canSpawn(false)
 {
@@ -28,7 +28,7 @@ ObstacleSpawner::ObstacleSpawner(ObstacleSpawner *otherObstacleSpawner) :
 
 ObstacleSpawner *ObstacleSpawner::clone() const
 {
-	return new ObstacleSpawner(*this);
+	return new ObstacleSpawner(this);
 }
 
 bool ObstacleSpawner::_readyToSpawn() const

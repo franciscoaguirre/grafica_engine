@@ -10,4 +10,5 @@ private:
 public:
 	Riser(float stopHeight = 0.f, float speed = 5.f);
 	void update();
+	Riser *clone() const override;
 };

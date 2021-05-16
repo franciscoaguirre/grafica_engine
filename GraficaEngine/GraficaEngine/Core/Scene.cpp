@@ -14,6 +14,34 @@ namespace Engine
 		_activeCamera = defaultCamera;
 	}
 
+	Scene::Scene(Scene *otherScene)
+	{
+		for (BaseGameObject *gameObject : otherScene->_gameObjects)
+		{
+			BaseGameObject *gameObjectCopy = gameObject->clone();
+			addGameObject(gameObjectCopy);
+		}
+
+		for (BaseGameObject *gameObject : otherScene->_queuedGameObjects)
+		{
+			BaseGameObject *gameObjectCopy = gameObject->clone();
+			addGameObject(gameObjectCopy);
+		}
+
+		for (Light *light : otherScene->_lights)
+		{
+			Light *lightCopy = new Light(light);
+			addLight(light);
+		}
+
+		for (std::pair<std::string, Camera*> entry : otherScene->_cameras)
+		{
+			addCamera(entry.first, entry.second->clone());
+		}
+
+		setActiveCamera("default"); // TODO: Make generic
+	}
+
 	void Scene::addGameObject(BaseGameObject *gameObject)
 	{
 		gameObject->setScene(this);

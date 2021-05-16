@@ -23,7 +23,8 @@ namespace Engine
 		std::vector<BaseGameObject *> _children; // TODO: Create local transform
 	public:
 		BaseGameObject();
-		BaseGameObject(BaseGameObject *);
+		BaseGameObject(const BaseGameObject *);
+		virtual BaseGameObject *clone() const;
 		virtual ~BaseGameObject();
 		Transform transform;
 		void update();
