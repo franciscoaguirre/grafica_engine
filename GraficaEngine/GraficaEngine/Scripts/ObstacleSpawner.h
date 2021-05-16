@@ -12,6 +12,7 @@ private:
 	float _timeToNextSpawn;
 	float _speed;
 	bool _readyToSpawn() const;
+	float _sign;
 public:
 	ObstacleSpawner(std::vector<Engine::GameObject*> obstacles);
 	ObstacleSpawner(ObstacleSpawner *);

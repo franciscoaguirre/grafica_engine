@@ -145,8 +145,8 @@ int main(int argc, char *argv[])
 	Engine::GameObject *log = new Engine::GameObject(
 		new Engine::Model(_strdup("Assets/Models/log.obj")),
 		Engine::MaterialObject(shader));
-	log->setCollider(new Engine::Collider(glm::vec3(-2.5, -.6f, -.5f), glm::vec3(2.5f, .6f, .5f)));
-	log->addBehaviour(new Boundary(-30.f, 10.f));
+	log->setCollider(new Engine::Collider(glm::vec3(-2.5, -.7f, -.5f), glm::vec3(2.5f, .7f, .5f)));
+	log->addBehaviour(new Boundary(-30.f, 30.f));
 	log->addTag("ground");
 
 	river->addBehaviour(new ObstacleSpawner(Obstacles{log}));
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
 		Engine::MaterialObject(shader));
 	car->setCollider(new Engine::Collider(glm::vec3(-1.5f, 0, -1.f), glm::vec3(1.5f, 1.5f, 1.f)));
 	car->addBehaviour(new Hazard());
-	car->addBehaviour(new Boundary(-30.f, 10.f));
+	car->addBehaviour(new Boundary(-30.f, 30.f));
 	car->addTag("hazard");
 
 	road->addBehaviour(new ObstacleSpawner(Obstacles{car}));
