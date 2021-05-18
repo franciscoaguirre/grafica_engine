@@ -8,10 +8,9 @@
 
 namespace Engine
 {
-	GameLoop::GameLoop() :
-		_shader(nullptr),
-		_window(nullptr),
-		_gamePaused(false)
+	GameLoop::GameLoop() : _shader(nullptr),
+						   _window(nullptr),
+						   _gamePaused(false)
 	{
 	}
 
@@ -125,7 +124,7 @@ namespace Engine
 		{
 			Time::updateTime();
 			input.update();
-			
+
 			if (input.getKeyDown(KEY_Q))
 				break;
 
@@ -156,14 +155,6 @@ namespace Engine
 				sceneManager.setShouldRestart(false);
 				activeScene = sceneManager.getActiveScene();
 			}
-
-			Camera *camera = activeScene->getActiveCamera();
-
-			_shader->use();
-			glm::mat4 projection = camera->getProjectionMatrix();
-			glm::mat4 view = camera->getViewMatrix();
-			_shader->setMat4("projection", projection);
-			_shader->setMat4("view", view);
 
 			activeScene->physicsUpdate();
 			activeScene->update();

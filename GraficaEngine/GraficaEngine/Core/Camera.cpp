@@ -18,17 +18,16 @@ namespace Engine
         transform.position = position;
     }
 
-    Camera::Camera(const Camera *otherCamera) :
-        _front(otherCamera->_front),
-        _up(otherCamera->_up),
-        _right(otherCamera->_right),
-        _worldUp(otherCamera->_worldUp),
-        _yaw(otherCamera->_yaw),
-        _pitch(otherCamera->_pitch),
-        _movementSpeed(otherCamera->_movementSpeed),
-        _mouseSensitivity(otherCamera->_mouseSensitivity),
-        _zoom(otherCamera->_zoom),
-        BaseGameObject(otherCamera)
+    Camera::Camera(const Camera *otherCamera) : _front(otherCamera->_front),
+                                                _up(otherCamera->_up),
+                                                _right(otherCamera->_right),
+                                                _worldUp(otherCamera->_worldUp),
+                                                _yaw(otherCamera->_yaw),
+                                                _pitch(otherCamera->_pitch),
+                                                _movementSpeed(otherCamera->_movementSpeed),
+                                                _mouseSensitivity(otherCamera->_mouseSensitivity),
+                                                _zoom(otherCamera->_zoom),
+                                                BaseGameObject(otherCamera)
     {
     }
 
@@ -48,6 +47,8 @@ namespace Engine
     void Camera::apply(Shader &shader) const
     {
         shader.setVec3f("viewPos", glm::value_ptr(transform.position));
+        shader.setMat4("projection", getProjectionMatrix());
+        shader.setMat4("view", getViewMatrix());
     }
 
     void Camera::processKeyboard(Camera_Movement direction, float deltaTime)
