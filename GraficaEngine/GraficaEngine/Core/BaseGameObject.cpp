@@ -149,6 +149,14 @@ namespace Engine
 		}
 	}
 
+	void BaseGameObject::shadowDraw(Shader* shader) const
+	{
+		for (BaseGameObject* child : _children)
+		{
+			child->shadowDraw(shader);
+		}
+	}
+
 	void BaseGameObject::addTag(std::string tag)
 	{
 		_tags.push_back(tag);

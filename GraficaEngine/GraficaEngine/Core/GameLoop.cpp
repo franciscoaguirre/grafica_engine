@@ -6,12 +6,58 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "../Renderer/Shadow.h"
+
 namespace Engine
 {
-	GameLoop::GameLoop() :
-		_shader(nullptr),
-		_window(nullptr),
-		_gamePaused(false)
+	unsigned int quadVAO = 0;
+	unsigned int quadVBO;
+	void renderQuad()
+	{
+		if (quadVAO == 0)
+		{
+			float quadVertices[] = {
+				// positions        // texture Coords
+				-1.0f,
+				1.0f,
+				0.0f,
+				0.0f,
+				1.0f,
+				-1.0f,
+				-1.0f,
+				0.0f,
+				0.0f,
+				0.0f,
+				1.0f,
+				1.0f,
+				0.0f,
+				1.0f,
+				1.0f,
+				1.0f,
+				-1.0f,
+				0.0f,
+				1.0f,
+				0.0f,
+			};
+			// setup plane VAO
+			glGenVertexArrays(1, &quadVAO);
+			glGenBuffers(1, &quadVBO);
+			glBindVertexArray(quadVAO);
+			glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+			glEnableVertexAttribArray(0);
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+			glEnableVertexAttribArray(1);
+			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+		}
+		glBindVertexArray(quadVAO);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		glBindVertexArray(0);
+	}
+
+	GameLoop::GameLoop() : _shader(nullptr),
+						   _window(nullptr),
+						   _gamePaused(false)
 	{
 	}
 
@@ -125,7 +171,7 @@ namespace Engine
 		{
 			Time::updateTime();
 			input.update();
-			
+
 			if (input.getKeyDown(KEY_Q))
 				break;
 
@@ -157,17 +203,17 @@ namespace Engine
 				activeScene = sceneManager.getActiveScene();
 			}
 
-			Camera *camera = activeScene->getActiveCamera();
-
-			_shader->use();
-			glm::mat4 projection = camera->getProjectionMatrix();
-			glm::mat4 view = camera->getViewMatrix();
-			_shader->setMat4("projection", projection);
-			_shader->setMat4("view", view);
-
 			activeScene->physicsUpdate();
 			activeScene->update();
 			activeScene->draw();
+
+			//float near_plane = 1.0f, far_plane = 7.5f;
+			//Shader *debugDepthQuad = new Shader("Assets/Shaders/depthTest.vs", "Assets/Shaders/depthTest.fs");
+			//debugDepthQuad->use();
+			//debugDepthQuad->setFloat("near_plane", near_plane);
+			//debugDepthQuad->setFloat("far_plane", far_plane);
+			//Shadow::getInstance().use(*debugDepthQuad);
+			//renderQuad();
 
 			_window->swap();
 		}

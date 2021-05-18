@@ -184,6 +184,7 @@
     <ClCompile Include="Scripts\ThirdPersonCameraController.cpp" />
     <ClCompile Include="Scripts\TimeController.cpp" />
     <ClCompile Include="Scripts\TreeSpawner.cpp" />
+    <ClCompile Include="Renderer\Shadow.cpp" />
     <ClCompile Include="Utils\DebugLog.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\Input.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="Scripts\ThirdPersonCameraController.h" />
     <ClInclude Include="Scripts\TimeController.h" />
     <ClInclude Include="Scripts\TreeSpawner.h" />
+    <ClInclude Include="Renderer\Shadow.h" />
     <ClInclude Include="Utils\CircularBuffer.h" />
     <ClInclude Include="Utils\DebugLog.h" />
     <ClInclude Include="Core\GameObject.h" />

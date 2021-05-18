@@ -25,6 +25,7 @@ namespace Engine
 		void setCollider(Collider *collider);
 		Collider *getCollider() const;
 		void draw() const;
+		void shadowDraw(Shader* shader) const;
 		Model *getModel() const;
 		MaterialObject &getMaterial();
 	};

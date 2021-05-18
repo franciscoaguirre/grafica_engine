@@ -45,6 +45,23 @@ namespace Engine
 		shader.setVec3f("light.ambient", glm::value_ptr(_ambient));
 		shader.setVec3f("light.specular", glm::value_ptr(_specular));
 		shader.setVec3f("light.direction", glm::value_ptr(_direction));
+		shadowApply(shader);
+	}
+
+	void Light::shadowApply(Shader& shader) const
+	{
+		float near_plane = 1.0f, far_plane = 7.5f;
+		glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+
+		// TODO: Check position
+		glm::mat4 lightView = glm::lookAt(
+			glm::vec3(-3.0f, 5.0f, 0.0f),
+			-glm::vec3(-3.0f, 5.0f, 0.0f),
+			glm::vec3(0.0f, 1.0f, 0.0f));
+
+		glm::mat4 lightSpaceMatrix = lightProjection * lightView;
+
+		shader.setMatrix4f("lightSpaceMatrix", glm::value_ptr(lightSpaceMatrix));
 	}
 
 	void Light::setIntensity(float intensity)

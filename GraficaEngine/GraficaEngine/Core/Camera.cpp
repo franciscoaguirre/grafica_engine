@@ -48,6 +48,8 @@ namespace Engine
     void Camera::apply(Shader &shader) const
     {
         shader.setVec3f("viewPos", glm::value_ptr(transform.position));
+        shader.setMat4("projection", getProjectionMatrix());
+        shader.setMat4("view", getViewMatrix());
     }
 
     void Camera::processKeyboard(Camera_Movement direction, float deltaTime)

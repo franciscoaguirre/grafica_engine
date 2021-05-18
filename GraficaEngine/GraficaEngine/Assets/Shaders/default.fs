@@ -6,6 +6,7 @@ in vec3 FragPos;
 in vec3 Normal;
 in vec2 TexCoords;
 in vec3 worldPosition;
+in vec4 FragPosLightSpace;
 
 struct Material
 {
@@ -25,12 +26,29 @@ struct Light
 };
 
 uniform sampler2D texture_diffuse1;
+uniform sampler2D shadowMap;
 uniform bool has_texture;
 uniform bool is_flat;
 uniform Material material;
 uniform Light light;
 uniform vec3 viewPos;
 uniform vec2 texture_offset;
+
+float ShadowCalculation(vec4 fragPosLightSpace)
+{
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(shadowMap, projCoords.xy).r;
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    // check whether current frag pos is in shadow
+    float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+
+    return shadow;
+}
 
 void main()
 {
@@ -72,12 +90,16 @@ void main()
         diffuse = diffuse * (diff * material.diffuse);
     }
 
+    // shadow
+    float shadow = ShadowCalculation(FragPosLightSpace);
+
     // specular
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     vec3 specular = light.specular * (spec * material.specular);
 
-    vec3 result = ambient + diffuse + specular;
+    vec3 diffuseSpecular = (1.0 - shadow) * (diffuse + specular);
+    vec3 result = (1.4 - shadow) * ambient + diffuseSpecular;
     FragColor = vec4(result, 1.0);
 }

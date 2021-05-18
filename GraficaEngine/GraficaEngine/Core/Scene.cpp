@@ -5,6 +5,12 @@
 
 #include "Settings.h"
 
+#include "../Renderer/Shadow.h"
+
+#include "GameLoop.h"
+
+#include <iostream>
+
 namespace Engine
 {
 	Scene::Scene(Camera *defaultCamera)
@@ -106,6 +112,16 @@ namespace Engine
 
 	void Scene::draw()
 	{
+		Shadow& shadow = Shadow::getInstance();
+
+		Shader* shader = shadow.getShader();
+		shadow.startGeneration();
+		for (BaseGameObject* gameObject : _gameObjects)
+		{
+			gameObject->shadowDraw(shader);
+		}
+		shadow.finishGeneration();
+
 		for (BaseGameObject *gameObject : _gameObjects)
 		{
 			gameObject->draw();
