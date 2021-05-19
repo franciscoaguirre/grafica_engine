@@ -21,6 +21,6 @@ namespace Engine
 
 	glm::mat4 OrthographicCamera::getProjectionMatrix() const
 	{
-		return glm::ortho(-8.0f, 8.0f, -6.0f, 6.0f, -100.0f, 100.0f); // TODO: Change parameters
+		return glm::ortho(-32.0f, 32.0f, -12.0f, 12.0f, -100.0f, 100.0f); // TODO: Change parameters
 	}
 }

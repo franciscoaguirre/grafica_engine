@@ -21,7 +21,7 @@ void HomeScreenController::update()
 	if (_sliding)
 	{
 		gameObject->transform.position.x += 1000.f * Engine::Time::getDeltaTime();
-		if (gameObject->transform.position.x >= 800.f)
+		if (gameObject->transform.position.x >= 1280.f)
 		{
 			gameObject->getScene()->deleteGameObject(gameObject);
 		}

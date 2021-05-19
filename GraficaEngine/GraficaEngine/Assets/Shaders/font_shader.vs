@@ -6,10 +6,9 @@ uniform mat4 projection;
 uniform mat4 parentModel;
 uniform mat4 model;
 uniform float positionX;
-uniform float positionY;
 
 void main()
 {
-    gl_Position = projection * parentModel * model * vec4(vertex.x + positionX, vertex.y + positionY, 0.0, 1.0);
+    gl_Position = projection * parentModel * model * vec4(vertex.x + positionX, vertex.y, 0.0, 1.0);
     TexCoords = vertex.zw;
 }

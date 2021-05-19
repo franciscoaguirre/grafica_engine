@@ -2,6 +2,9 @@
 
 #include "Window.h"
 #include "../Utils/DebugLog.h"
+#include <iostream>
+#include <glm/glm.hpp>
+
 
 namespace Engine
 {
@@ -19,6 +22,7 @@ namespace Engine
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 		SDL_ShowCursor(SDL_DISABLE);
 		glewInit();
+		glViewport(0, 0, width, height);
 	}
 
 	void Window::swap()

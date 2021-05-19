@@ -34,6 +34,8 @@ namespace Engine
         bool isDrawable() const;
 		void setFont(std::string font);
         void setColor(glm::vec3 color);
+        float getLength() const;
+        float getMaxPositionX() const;
         TextObject *clone() const override;
 	};
 }

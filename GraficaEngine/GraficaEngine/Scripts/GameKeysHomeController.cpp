@@ -24,7 +24,7 @@ void GameKeysHomeController::update()
 	if (_sliding)
 	{
 		gameObject->transform.position.x -= 1000.f * Engine::Time::getDeltaTime();
-		if (gameObject->transform.position.x <= -500.f)
+		if (gameObject->transform.position.x <= -298.f)
 		{
 			gameObject->getScene()->deleteGameObject(gameObject);
 		}

@@ -21,6 +21,6 @@ namespace Engine
 
 	glm::mat4 PerspectiveCamera::getProjectionMatrix() const
 	{
-		return glm::perspective(glm::radians(getZoom()), 800.0f / 600.0f, 0.1f, 100.0f); // TODO: Change parameters
+		return glm::perspective(glm::radians(getZoom()), 2560.0f / 1440.0f, 0.1f, 100.0f); // TODO: Change parameters
 	}
 }

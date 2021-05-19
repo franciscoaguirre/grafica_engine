@@ -33,7 +33,7 @@ namespace Engine {
         glBindVertexArray(_font.VAO);
 
         // Acumulate position in X axis so we display each char next to the previous one
-        float positionX = transform.position.x;
+        float positionX = 0.f;
 
         _parent->transform.apply(*shader, "parentModel");
         transform.apply(*shader);
@@ -44,7 +44,7 @@ namespace Engine {
             const Engine::Character ch = _font.characters.at(c);
 
             shader->setFloat("positionX", positionX);
-            shader->setFloat("positionY", transform.position.y);
+            //shader->setFloat("positionY", transform.position.y);
 
             glBindTexture(GL_TEXTURE_2D, ch.textureID);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ch.EBO);
@@ -76,5 +76,21 @@ namespace Engine {
     void TextObject::setColor(glm::vec3 color)
     {
         _color = color;
+    }
+
+    float TextObject::getLength() const
+    {
+        float length = 0;
+        for (char const& c : _text)
+        {
+            Character ch = _font.characters.at(c);
+            length += (ch.Advance >> 6) * transform.scale.x;
+        }
+        return length;
+    }
+
+    float TextObject::getMaxPositionX() const
+    {
+        return transform.position.x + getLength();
     }
 }

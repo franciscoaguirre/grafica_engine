@@ -15,7 +15,7 @@ namespace Engine {
 		_color = color;
 		_shader = new Shader("Assets/Shaders/canvas.vs", "Assets/Shaders/canvas.fs");
 
-		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(800), 0.0f, static_cast<float>(600), -5.0f, 5.0f); //TODO Configure with viewport's size
+		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1280), 0.0f, static_cast<float>(720), -5.0f, 5.0f); //TODO Configure with viewport's size
 		_shader->use();
 		_shader->setMatrix4f("projection", glm::value_ptr(projection));
 
